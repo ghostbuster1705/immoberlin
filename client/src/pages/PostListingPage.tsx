@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useMemo, useState } from 'react'
+import { type ChangeEvent, type FormEvent, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createListing } from '../api'
 import { DISTRICTS } from '../constants'

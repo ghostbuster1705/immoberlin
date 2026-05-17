@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { type FormEvent, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { deleteListing, getListings, updateListing, updateListingStatus } from '../api'
 import { useAuth } from '../context/AuthContext'

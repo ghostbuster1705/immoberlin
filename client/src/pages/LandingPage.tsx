@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FormEvent, useEffect, useState } from 'react'
+import { type FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getListings } from '../api'
 import { DISTRICTS, TAGLINES } from '../constants'
