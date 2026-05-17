@@ -1,34 +1,30 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
-function createTransporter() {
-  if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    return nodemailer.createTransport({
-      jsonTransport: true,
-    });
-  }
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
+async function sendMagicLink(email, link) {
+  await resend.emails.send({
+    from: "Berlin Sublet <onboarding@resend.dev>",
+    to: email,
+    subject: "Your Berlin Sublet login link",
+    html: `<p>Click to login: <a href="${link}">${link}</a></p>`,
   });
 }
 
-const transporter = createTransporter();
-
-async function sendEmail(options) {
-  const info = await transporter.sendMail({
-    from: process.env.EMAIL_FROM || "noreply@berlinsublet.com",
-    ...options,
+async function sendListingInquiry({ to, ownerName, listingTitle, district, senderName, senderEmail, message }) {
+  await resend.emails.send({
+    from: "Berlin Sublet <onboarding@resend.dev>",
+    to,
+    subject: `New Berlin Sublet inquiry: ${listingTitle}`,
+    html: [
+      `<p>Hi ${ownerName || "there"},</p>`,
+      `<p>You received a new inquiry for your listing "<strong>${listingTitle}</strong>" in ${district}.</p>`,
+      `<p><strong>From:</strong> ${senderName} &lt;${senderEmail}&gt;</p>`,
+      `<p><strong>Message:</strong></p>`,
+      `<p>${message.replace(/\n/g, "<br/>")}</p>`,
+      "<p>Reply directly to continue the conversation.</p>",
+    ].join(""),
   });
-
-  if (info.message) {
-    console.log("Email payload (json transport):", info.message.toString());
-  }
 }
 
-module.exports = { sendEmail };
+module.exports = { sendMagicLink, sendListingInquiry };

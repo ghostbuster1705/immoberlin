@@ -9,7 +9,7 @@ const path = require("path");
 
 const db = require("./db");
 const { getCurrentUserFromRequest, requireAuth, signMagicLinkToken, signSessionToken, verifyToken } = require("./auth");
-const { sendEmail } = require("./mailer");
+const { sendListingInquiry, sendMagicLink } = require("./mailer");
 
 const app = express();
 const PORT = Number(process.env.PORT || 3001);
@@ -442,21 +442,14 @@ app.post("/api/listings/:id/contact", async (req, res, next) => {
       `,
     ).run(req.params.id, senderEmail, senderName, message);
 
-    await sendEmail({
+    await sendListingInquiry({
       to: listing.owner_email,
-      subject: `New Berlin Sublet inquiry: ${listing.title}`,
-      text: [
-        `Hi ${listing.owner_name || "there"},`,
-        "",
-        `You received a new inquiry for your listing "${listing.title}" in ${listing.district}.`,
-        "",
-        `From: ${senderName} <${senderEmail}>`,
-        "",
-        "Message:",
-        message,
-        "",
-        "Reply directly to continue the conversation.",
-      ].join("\n"),
+      ownerName: listing.owner_name,
+      listingTitle: listing.title,
+      district: listing.district,
+      senderName,
+      senderEmail,
+      message,
     });
 
     return res.json({ success: true });
@@ -489,18 +482,7 @@ app.post("/api/auth/magic-link", async (req, res, next) => {
     const token = signMagicLinkToken(email);
     const verifyUrl = `${getServerUrl(req)}/api/auth/verify/${token}`;
 
-    await sendEmail({
-      to: email,
-      subject: "Your Berlin Sublet magic link",
-      text: [
-        "No Makler. No fees. Just people.",
-        "",
-        "Click the link below to access your Berlin Sublet account:",
-        verifyUrl,
-        "",
-        "This link expires in 20 minutes.",
-      ].join("\n"),
-    });
+    await sendMagicLink(email, verifyUrl);
 
     return res.json({ success: true });
   } catch (error) {
