@@ -3,7 +3,9 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AppLayout } from './components/AppLayout'
 import { useAuth } from './context/AuthContext'
 import { AuthPage } from './pages/AuthPage'
+import { DatenschutzPage } from './pages/DatenschutzPage'
 import { DashboardPage } from './pages/DashboardPage'
+import { ImpressumPage } from './pages/ImpressumPage'
 import { LandingPage } from './pages/LandingPage'
 import { ListingDetailPage } from './pages/ListingDetailPage'
 import { ListingsPage } from './pages/ListingsPage'
@@ -34,6 +36,8 @@ export default function App() {
           }
         />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/impressum" element={<ImpressumPage />} />
+        <Route path="/datenschutz" element={<DatenschutzPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

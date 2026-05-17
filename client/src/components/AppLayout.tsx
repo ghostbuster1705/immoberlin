@@ -134,6 +134,9 @@ export function AppLayout() {
             <a className="block text-slate-300 hover:text-white" href="https://instagram.com/" target="_blank" rel="noreferrer">
               Instagram (coming soon)
             </a>
+            <Link className="block text-slate-300 hover:text-white" to="/impressum">
+              Impressum
+            </Link>
           </div>
         </div>
       </footer>
