@@ -3,12 +3,14 @@ const { Resend } = require("resend");
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendMagicLink(email, link) {
-  await resend.emails.send({
+  console.log("Sending magic link to:", email);
+  const { data, error } = await resend.emails.send({
     from: "Berlin Sublet <onboarding@resend.dev>",
     to: email,
     subject: "Your Berlin Sublet login link",
     html: `<p>Click to login: <a href="${link}">${link}</a></p>`,
   });
+  console.log("Resend response:", data, error);
 }
 
 async function sendListingInquiry({ to, ownerName, listingTitle, district, senderName, senderEmail, message }) {
