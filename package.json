@@ -10,7 +10,7 @@
     "client": "cd client && npm run dev",
     "build": "cd client && npm run build",
     "start": "node server/index.js",
-    "postinstall": "npm install --prefix client"
+    "postinstall": "npm install --prefix client --include=dev && npm run build"
   },
   "dependencies": {
     "better-sqlite3": "^12.10.0",
