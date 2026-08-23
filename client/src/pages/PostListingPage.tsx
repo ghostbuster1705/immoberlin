@@ -212,10 +212,19 @@ export function PostListingPage() {
 
       {step === 3 && (
         <section className="space-y-3">
-          <label className="block text-sm text-slate-300">
-            Photos (max 5)
-            <input type="file" accept="image/*" multiple onChange={onPhotoChange} className="mt-2 block w-full text-sm text-white" />
-          </label>
+          <div className="space-y-2">
+            <p className="text-sm text-slate-300">Photos (max 5)</p>
+            <input id="listing-photos" type="file" accept="image/*" multiple onChange={onPhotoChange} className="sr-only" />
+            <div className="flex flex-wrap items-center gap-3">
+              <label
+                htmlFor="listing-photos"
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-yellow-300 px-4 py-2 text-sm font-bold text-slate-900 transition hover:bg-yellow-200"
+              >
+                Choose photos
+              </label>
+              <span className="text-sm text-slate-300">{photos.length ? `${photos.length} selected` : 'No photos selected'}</span>
+            </div>
+          </div>
           {previewUrls.length > 0 && (
             <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-5">
               {previewUrls.map((url, index) => (
