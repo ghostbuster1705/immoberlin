@@ -154,7 +154,7 @@ export function ListingDetailPage() {
           >
             Share listing
           </button>
-          <a href="mailto:report@berlinsublet.com" className="block text-sm font-semibold text-yellow-300 hover:text-yellow-200">
+          <a href="mailto:immoscout@berlin.de" className="block text-sm font-semibold text-yellow-300 hover:text-yellow-200">
             Report listing
           </a>
         </aside>
