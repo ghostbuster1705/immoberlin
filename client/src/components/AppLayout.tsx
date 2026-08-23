@@ -128,8 +128,8 @@ export function AppLayout() {
           </div>
           <div>
             <p className="font-semibold text-white">Contact</p>
-            <a className="mt-2 block text-slate-300 hover:text-white" href="mailto:hello@berlinsublet.com">
-              hello@berlinsublet.com
+            <a className="mt-2 block text-slate-300 hover:text-white" href="mailto:immoscout@berlin.de">
+              immoscout@berlin.de
             </a>
             <a className="block text-slate-300 hover:text-white" href="https://instagram.com/" target="_blank" rel="noreferrer">
               Instagram (coming soon)
