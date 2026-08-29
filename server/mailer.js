@@ -1,7 +1,7 @@
 const { Resend } = require("resend");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const EMAIL_FROM = process.env.EMAIL_FROM || "ImmoBerlin <immoscout@berlin.de>";
+const EMAIL_FROM = process.env.EMAIL_FROM || "ImmoBerlin <subletberlino@gmail.com>";
 
 async function sendMagicLink(email, link) {
   console.log("Sending magic link to:", email);

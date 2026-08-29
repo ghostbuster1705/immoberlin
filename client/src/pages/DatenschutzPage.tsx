@@ -56,8 +56,8 @@ export function DatenschutzPage() {
         <p>Lea-Grundig-Str. 20, 12679 Berlin</p>
         <p>
           E-Mail:{' '}
-          <a className="text-yellow-300 hover:text-yellow-200" href="mailto:immoscout@berlin.de">
-            immoscout@berlin.de
+          <a className="text-yellow-300 hover:text-yellow-200" href="mailto:subletberlino@gmail.com">
+            subletberlino@gmail.com
           </a>
         </p>
         <p>

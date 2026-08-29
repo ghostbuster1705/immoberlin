@@ -49,7 +49,7 @@ export function ListingCard({ listing }: ListingCardProps) {
             Contact
           </Link>
           <a
-            href="mailto:immoscout@berlin.de"
+            href="mailto:subletberlino@gmail.com"
             className="flex min-h-11 items-center justify-center rounded-lg border border-white/20 px-3 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
           >
             Email
